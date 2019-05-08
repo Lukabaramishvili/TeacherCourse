@@ -1,0 +1,8 @@
+<%= form_for @student do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+<br>
+<%= f.label :teacher_id %>
+<%= f.collection_select :teacher_id, Teacher.all, :id, :name %><br>
+<%= f.submit %><br>
+<%end %>

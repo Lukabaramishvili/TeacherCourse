@@ -1,0 +1,14 @@
+<%= link_to "Teachers Page", teachers_path%>
+<br>
+<%= link_to "Students Page", students_path%>
+<br>
+<%= link_to "Courses Page", courses_path%>
+<hr>
+
+
+<h1>Student List</h1>
+
+<% @students.each do |student|%>
+<li><%= link_to "#{student.name}", student %></li>
+
+<%end%>

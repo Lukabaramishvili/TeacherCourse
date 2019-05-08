@@ -1,0 +1,9 @@
+<h2>Edit your Profile<h2>
+
+  <%= form_for @teacher do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :bio %>
+  <%= f.text_field :bio %><br>
+  <%= f.submit %><br>
+  <%end %>

@@ -1,0 +1,12 @@
+<h1>Welcome back <%= @student.name %>!</h1>
+ <h2> Student Major:</h2>
+ <h3><%=@student.major%></h3>
+<h3>Here are your current courses:</h3>
+<ol>
+ <%@courses.each do |course| %>
+<li>
+ <%= course.name %>
+ </li>
+ <%end %>
+ </ol>
+<%= link_to "Edit your profile", edit_student_path %>
