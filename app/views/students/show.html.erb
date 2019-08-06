@@ -1,12 +1,25 @@
-<h1>Welcome back <%= @student.name %>!</h1>
- <h2> Student Major:</h2>
+<h1><%= @student.name %>'s Profile!</h1>
+ <h2><%= @student.name %>'s Major:</h2>
  <h3><%=@student.major%></h3>
+ <%= link_to "Edit your profile", edit_student_path %>
 <h3>Here are your current courses:</h3>
 <ol>
- <%@courses.each do |course| %>
+ <%@student.enrollments.each do |enrollment| %>
 <li>
- <%= course.name %>
+ <%= link_to "#{enrollment.course.name}", course_path(enrollment.course)%>
+ <%=button_to "Drop Course", enrollment, method: :delete %>
  </li>
  <%end %>
  </ol>
-<%= link_to "Edit your profile", edit_student_path %>
+
+<br>
+
+<h3>Register on a New Course</h3>
+<%= form_for @enrollment do |f| %>
+<%= f.label :course_id %>
+<%= f.collection_select :course_id, Course.all, :id, :name %><br>
+
+<%= f.hidden_field :student_id, value: @student.id %><br>
+
+<%= f.submit %><br>
+<%end %>

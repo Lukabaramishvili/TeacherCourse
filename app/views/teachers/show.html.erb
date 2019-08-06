@@ -5,14 +5,20 @@
 <ol>
  <%@teacher.courses.each do |course| %>
 <li>
- <%= course.name %>
+ <%= link_to "#{course.name}", course %>
  </li>
-
+  <%= button_to "Delete Course", course_path(course), method: :delete%>
  <%end %>
  </ol>
-<%= link_to "Edit your profile", edit_teacher_path %>
+<%= button_to "Edit your profile", edit_teacher_path, method: :get%>
 <br>
-<%= link_to "Create New Course", new_course_path(@course) %>
-<br>
+<h3>Create New Course</h3>
+<%= form_for @course do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+<%= f.label :description %>
+<%= f.text_field :description %><br>
 
-<%= button_to "Back to List", teachers_path%>
+<%= f.hidden_field :teacher_id, value: @teacher.id %><br>
+<%= f.submit %><br>
+<%end %>

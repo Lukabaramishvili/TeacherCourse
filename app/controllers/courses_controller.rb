@@ -7,6 +7,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @teacher = @course.teacher
+
   end
 
   def new
@@ -14,7 +15,9 @@ class CoursesController < ApplicationController
   end
 
   def create
+    # byebug
     @course = Course.create(course_params)
+    @teacher = @course.teacher
     redirect_to @course
   end
 
@@ -28,12 +31,19 @@ class CoursesController < ApplicationController
     redirect_to @course
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+    @teacher = @course.teacher
+    @course.destroy
+    redirect_to teacher_path(@teacher)
+  end
+
   private
   def get_course
     @course = Course.find(params[:id])
   end
 
   def course_params
-    params.require(:course).permit(:name, :teacher_id)
+    params.require(:course).permit(:name, :description, :teacher_id)
   end
 end

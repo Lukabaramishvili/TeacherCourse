@@ -1,3 +1,16 @@
-<h1>Welcome back <%= @course.name %>!</h1>
- <h2> Couese Name:</h2>
- <h3><%=@course.name%></h3>
+<h1>Welcome to <%= @course.name %> Course!</h1>
+ <h3>Course Name: <%=@course.name%></h3>
+ <h3>Course Description: <%=@course.description%></h3>
+  <h3>Instructor Name: <%=link_to "#{@course.teacher.name}", teacher_path%></h3>
+<h3>Students Registered on Course: </h3>
+<ol>
+<% @course.enrollments.each do |enrollment|%>
+  <li>
+    <%= link_to "#{enrollment.student.name}", student_path%>
+  </li>
+<%end%>
+</ol>
+
+
+ <br>
+ <%= link_to "Back your Profile", teacher_path(@teacher)%>

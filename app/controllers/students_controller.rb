@@ -7,6 +7,8 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
     @courses = @student.courses
+    @enrollments = @student.enrollments
+    @enrollment = Enrollment.new
   end
 
   def edit
@@ -19,10 +21,6 @@ class StudentsController < ApplicationController
     redirect_to @student
   end
 
-  def destroy
-    @student = Student.find(params[:id])
-    @student.destroy
-  end
 
   private
   def get_student
